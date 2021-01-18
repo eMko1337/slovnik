@@ -24,31 +24,23 @@ public class Polrocny_projekt
     public static void main(String[] args) 
     {
         
-        
-       
         Connection conn = null;
-        
-        
+
         try
         {
             Scanner scanner = new Scanner(System.in);  
-            
-            
-            
-            
             String url = "jdbc:mysql://localhost:3306/slovnik_databaza";
             String user = "root";
             String password = ""; 
-            conn = (Connection) DriverManager.getConnection(url, user, password); 
-           
-             
+            conn = (Connection) DriverManager.getConnection(url, user, password);
+
             System.out.println("Vyber si slovník slovensko-anglický(1) alebo anglicko-slovenský(2): ");
             String jazyk = scanner.nextLine();
             
             if ("1".equals(jazyk))
             {
                 
-                System.out.println("Zadaj slovenské slovo: ");
+                System.out.println("Zadaj slovenské slovo(prosím bez diakritiky): ");
                 String skslovo = scanner.nextLine();
                 
                 String skslct = "SELECT Anglicko_Slovensky FROM slovnik WHERE Slovensky = ?";
@@ -104,6 +96,7 @@ public class Polrocny_projekt
             catch(SQLException ex)
             {
                 System.out.println(ex.getMessage());
+                System.out.println("Zle zadané slovo alebo sa nenachádza v slovníku");
             }
             System.out.println("Koniec");
         }
